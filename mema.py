@@ -1,16 +1,51 @@
 from tkinter import *
+from info_window import InfoWindow
+
+class StartWindow(InfoWindow):
+    def __init__(self):
+        window = Tk()
+        window.title("COVID Contact Tracing")
+        window.geometry("500x350")
+
+        #frame of panels
+        panel_1 = Frame(window)
+        panel_1.pack(pady=20, padx=60, fill="both", expand=True )
+
+        # panel 1
+
+        # Welcome Greetings
+        welcome = Label(panel_1, text = "Welcome", font=("Times New Roman", 32))
+        welcome.pack(pady=12, padx=10)
+
+        # Program Description
+        sub_head = Label(panel_1, text ="COVID Contact Tracing")
+        sub_head.pack(pady=12,padx=10)
+
+        # Start Button
+        start = Button(panel_1, text = "Start", command=self.change_to_info) 
+        start.pack(pady=12, padx=10)
+
+        # Search Entry
+        search_title = Label(panel_1, text = "Search Name:")
+        search_title.pack(pady=10, padx=10)
+        search_entry = Entry(panel_1)
+        search_entry.pack(pady=10, padx=10)
+        search_btn = Button(panel_1, text="Search")
+        search_btn.pack(pady=10, padx=10)
+
+        window.mainloop()
+StartWindow()
+
 from tkinter import ttk
 
 class InfoWindow():
-    def __init__(self):
-        self.panel_2 = Tk()
-        self.panel_2.title("Personal Information")
-        self.panel_2.geometry("500x350")
-        self.create_info_window()
-        
+    def change_to_info(self):
+        panel_2 = Tk()
+        panel_2.title("Personal Information")
+        # panel_2.geometry("500x350")
+
         #frame
-    def create_info_window(self):
-        frame = Frame(self.panel_2)
+        frame = Frame(panel_2)
         frame.pack()
 
         ### PERSONAL INFORMATION
@@ -58,7 +93,8 @@ class InfoWindow():
         email_label.grid(row=4,column=1)
         email_label_entry = Entry(user_frame)
         email_label_entry.grid(row=5,column=1)
-    def run(self):
-        self.panel_2.mainloop()
 
-InfoWindow().run()
+
+        panel_2.mainloop()
+
+InfoWindow()
