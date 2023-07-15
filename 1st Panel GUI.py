@@ -28,11 +28,13 @@ start.pack(pady=12, padx=10)
 
 # Search Entry
 search_title = Label(panel_1, text = "Search Name:")
-search_title.pack(pady=12, padx=10)
+search_title.pack(pady=10, padx=10)
 search_entry = Entry(panel_1)
-search_entry.pack(pady=12, padx=10)
-
+search_entry.pack(pady=10, padx=10)
+search_btn = Button(panel_1, text="Search")
+search_btn.pack(pady=10, padx=10)
 panel_1.tkraise()
+
 # panel 2
 
 # Personal Information Headings
