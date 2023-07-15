@@ -60,5 +60,3 @@ class InfoWindow():
         email_label_entry.grid(row=5,column=1)
     def run(self):
         self.panel_2.mainloop()
-
-InfoWindow().run()
