@@ -5,7 +5,6 @@ class InfoWindow():
     def __init__(self):
         self.panel_2 = Tk()
         self.panel_2.title("Personal Information")
-        self.panel_2.geometry("500x350")
         self.create_info_window()
         
         #frame
@@ -15,7 +14,7 @@ class InfoWindow():
 
         ### PERSONAL INFORMATION
         user_frame = LabelFrame(frame, text="Personal Information")
-        user_frame.grid(row=0, column=0, sticky="news", pady=20, padx=10)###
+        user_frame.grid(row=0, column=0, sticky="news", pady=5, padx=10)###
 
         # Enter First Name
         first_name_label = Label(user_frame, text="First Name")
@@ -61,11 +60,28 @@ class InfoWindow():
 
         #data privacy grid
         data_privacy_frame = LabelFrame(frame, text="Personal Information Protection")
-        data_privacy_frame.grid(row=1, column=0, sticky="news", pady=20, padx=10)
+        data_privacy_frame.grid(row=1, column=0, sticky="news", pady=5, padx=10)
 
+        #data privacy
         data_privacy_label = Label(data_privacy_frame,
                                    text="Data Privacy Act\nI, hereby give my consent to COVID-19 Contanct Tracing to collect, process, and\nuse my personal information for the purposes stated in this form. I understand\nthat my personal data will be treated with confidentiality and will only be\ndisclosed to third parties as necessary for the specified purposes. I acknowledge \nthat I have the right to withdraw my consent at any time. By checking the box\nbelow, I confirm that I have read and understood this Data Privacy Consent Form,\nincluding the 'Data Privacy Act of 2012' of the Republic of the Philippines, its\nImplementing Rules and Regulations (IRR), as well as all other guidelines and\nissuances by the National Privacy Commission (NPC).")
-        data_privacy_label.grid()
+        data_privacy_label.grid(row=0,column=0, sticky="news", pady=2)
+
+        #data privacy check button
+        data_privacy_check = Checkbutton(data_privacy_frame, text="I give my consent for my personal information.")
+        data_privacy_check.grid(row=1,column=0)
+
+        # Buttons Frame
+        buttons_frame = Frame(data_privacy_frame)
+        buttons_frame.grid(row=2, column=0)
+
+        # Back Button
+        back_button = Button(buttons_frame, text="Back")
+        back_button.pack(side=LEFT)
+
+        # Next Button
+        next_button = Button(buttons_frame, text="Next")
+        next_button.pack(side=RIGHT)
         self.panel_2.mainloop() 
 
 InfoWindow()
