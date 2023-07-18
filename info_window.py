@@ -63,13 +63,9 @@ class InfoWindow():
         data_privacy_frame = LabelFrame(frame, text="Personal Information Protection")
         data_privacy_frame.grid(row=1, column=0, sticky="news", pady=20, padx=10)
 
-        data_privacy_label = Label(data_privacy_frame, text="Data Privacy Act")
+        data_privacy_label = Label(data_privacy_frame,
+                                   text="Data Privacy Act\nI, hereby give my consent to COVID-19 Contanct Tracing to collect, process, and\nuse my personal information for the purposes stated in this form. I understand\nthat my personal data will be treated with confidentiality and will only be\ndisclosed to third parties as necessary for the specified purposes. I acknowledge \nthat I have the right to withdraw my consent at any time. By checking the box\nbelow, I confirm that I have read and understood this Data Privacy Consent Form,\nincluding the 'Data Privacy Act of 2012' of the Republic of the Philippines, its\nImplementing Rules and Regulations (IRR), as well as all other guidelines and\nissuances by the National Privacy Commission (NPC).")
         data_privacy_label.grid()
-
-        data_privacy_canvas = Canvas(data_privacy_frame)
-        data_privacy_canvas.create_text(50,50,text="I, [Participant's Name], hereby give my consent to COVID-19 Contact Tracing to collect, process, and use my personal information for the purposes stated in this form. I understand that my personal data will be treated with confidentiality and will only be disclosed to third parties as necessary for the specified purposes. I acknowledge that I have the right to withdraw my consent at any time. By checking the box below, I confirm that I have read and understood this Data Privacy Consent Form, including the 'Data Privacy Act of 2012' of the Republic of the Philippines, its Implementing Rules and Regulations (IRR), as well as all other guidelines and issuances by the National Privacy Commission (NPC).")
-        data_privacy_canvas.grid()
-    #def run(self):
         self.panel_2.mainloop() 
 
 InfoWindow()
