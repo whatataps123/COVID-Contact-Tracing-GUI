@@ -82,6 +82,6 @@ class InfoWindow():
         # Next Button
         next_button = Button(buttons_frame, text="Next")
         next_button.pack(side=RIGHT)
-        self.panel_2.mainloop() 
+        self.panel_2.mainloop()
+ 
 
-InfoWindow()

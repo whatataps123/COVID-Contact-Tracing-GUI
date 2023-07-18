@@ -1,16 +1,28 @@
 # pseudocode
 from tkinter import *
-from info_window import InfoWindow
+from tkinter import ttk
 
 class StartWindow():
     def __init__(self):
+        self.start_window()
+
+    def start_info_window(self):
+        # Close the StartWindow
+        self.window.destroy()
+        info_window = self.info_window()
+
+    def back_start_window(self):
+        info_window = self.info_window.destroy()
+        self.start_window()
+        
+    def start_window(self):
         self.window = Tk()
         self.window.title("COVID Contact Tracing")
-        self.window.geometry("500x350")
+        self.window.geometry()
 
         #frame of panels
         panel_1 = Frame(self.window)
-        panel_1.pack(pady=20, padx=60, fill="both", expand=True )
+        panel_1.pack(pady=20, padx=60, fill="both", expand=True)
 
         # panel 1
 
@@ -23,7 +35,7 @@ class StartWindow():
         sub_head.pack(pady=12,padx=10)
 
         # Start Button
-        start = Button(panel_1, text = "Start", command=self.open_info_window) 
+        start = Button(panel_1, text = "Start", command=self.start_info_window) 
         start.pack(pady=12, padx=10)
 
         # Search Entry
@@ -33,20 +45,87 @@ class StartWindow():
         search_entry.pack(pady=10, padx=10)
         search_btn = Button(panel_1, text="Search")
         search_btn.pack(pady=10, padx=10)
-
         self.window.mainloop()
-    
-    def open_info_window(self):
-        # Close the StartWindow
-        self.window.destroy()
-        info_window = InfoWindow()
-        info_window.run()
 
+#####################################################
+    def info_window(self):
+        self.info_window = Tk()
+        self.info_window.title("Personal Information")
+        self.info_window.geometry()
+
+        frame = Frame(self.info_window)
+        frame.pack()
+        
+        user_frame = LabelFrame(frame, text="Personal Information")
+        user_frame.grid(row=0, column=0, sticky="news", pady=5, padx=10)
+
+        # Enter First Name
+        first_name_label = Label(user_frame, text="First Name")
+        first_name_label.grid(row=0, column=0)
+        first_name_entry = Entry(user_frame)
+        first_name_entry.grid(row=1, column=0)
+
+        # Enter Last Name
+        last_name_label = Label(user_frame, text="Last Name")
+        last_name_label.grid(row=0,column=1)
+        last_name_entry = Entry(user_frame)
+        last_name_entry.grid(row=1, column=1)
+
+        # Biological Sex
+        sex_label = Label(user_frame, text="Biological Sex")
+        sex_label.grid(row=0, column=2)
+        sex_box = ttk.Combobox(user_frame, values=["Male","Female"])
+        sex_box.grid(row=1, column= 2)
+
+        # Age
+        age_label = Label(user_frame, text="Age")
+        age_label.grid(row=0, column=3)
+        age_box = ttk.Spinbox(user_frame, from_=1, to_=120, width=3)
+        age_box.grid(row=1,column=3)
+
+        # Enter Address
+        address_label = Label(user_frame,text="Address")
+        address_label.grid(row=2,columnspan=4)
+        address_entry = Entry(user_frame, width=71)
+        address_entry.grid(row=3, columnspan=4)
+
+        # Enter Number
+        contact_num_label = Label(user_frame, text="Contact Number")
+        contact_num_label.grid(row=4,column=0)
+        contact_num_entry = Entry(user_frame)
+        contact_num_entry.grid(row=5, column=0)
+
+        # Enter Email
+        email_label = Label(user_frame, text="Email")
+        email_label.grid(row=4,column=1)
+        email_label_entry = Entry(user_frame)
+        email_label_entry.grid(row=5,column=1)
+
+        #data privacy grid
+        data_privacy_frame = LabelFrame(frame, text="Personal Information Protection")
+        data_privacy_frame.grid(row=1, column=0, sticky="news", pady=5, padx=10)
+
+        #data privacy
+        data_privacy_label = Label(data_privacy_frame,
+                                   text="Data Privacy Act\nI, hereby give my consent to COVID-19 Contanct Tracing to collect, process, and\nuse my personal information for the purposes stated in this form. I understand\nthat my personal data will be treated with confidentiality and will only be\ndisclosed to third parties as necessary for the specified purposes. I acknowledge \nthat I have the right to withdraw my consent at any time. By checking the box\nbelow, I confirm that I have read and understood this Data Privacy Consent Form,\nincluding the 'Data Privacy Act of 2012' of the Republic of the Philippines, its\nImplementing Rules and Regulations (IRR), as well as all other guidelines and\nissuances by the National Privacy Commission (NPC).")
+        data_privacy_label.grid(row=0,column=0, sticky="news", pady=2)
+
+        #data privacy check button
+        data_privacy_check = Checkbutton(data_privacy_frame, text="I give my consent for my personal information.")
+        data_privacy_check.grid(row=1,column=0)
+
+        # Buttons Frame
+        buttons_frame = Frame(data_privacy_frame)
+        buttons_frame.grid(row=2, column=0)
+
+        # Back Button
+        back_button = Button(buttons_frame, text="Back", command=self.back_start_window)
+        back_button.pack(side=LEFT)
+
+        # Next Button
+        next_button = Button(buttons_frame, text="Next")
+        next_button.pack(side=RIGHT)
+        self.info_window.mainloop()
+        
 if __name__ == "__main__":
     StartWindow()
-# get information (name, age, bday, address, contact no., etc.)
-# questions about covid status (vaccinated or booster?, symptoms, exposure to probable cause, in contact with someone, tested for covid?)
-# submits the data and save in a file
-# Add or search entry
-# loop
-# End
