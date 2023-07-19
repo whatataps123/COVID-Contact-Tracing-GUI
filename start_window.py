@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 
 def first_window():
     hide_frames()
@@ -11,13 +12,22 @@ def start_btn():
     hide_frames()
     panel_2.pack()
 
-def back_window():
+def back_btn():
     hide_frames()
     panel_1.pack(pady=20, padx=60, fill="both", expand=True)
+
+def next_btn():
+    data_check = data_var.get()  
+    if data_check == "Accepted":
+        hide_frames()
+        panel_3.pack()
+    else:
+        messagebox.showwarning(title="Error",message="Please check the box if you want to proceed.")
 
 def hide_frames():
     panel_1.pack_forget()
     panel_2.pack_forget()
+    panel_3.pack_forget()
 
 window = Tk()
 window.title("COVID Contact Tracing")
@@ -46,7 +56,8 @@ search_entry.pack(pady=10, padx=10)
 search_btn = Button(panel_1, text="Search")
 search_btn.pack(pady=10, padx=10)
 
-#### Personal Information
+######################### Personal Information ######################### 
+
 panel_2 = Frame(window)
 
 user_frame = LabelFrame(panel_2, text="Personal Information")
@@ -104,7 +115,8 @@ data_privacy_label = Label(data_privacy_frame,
 data_privacy_label.grid(row=0,column=0, sticky="news", pady=2)
 
 #data privacy check button
-data_privacy_check = Checkbutton(data_privacy_frame, text="I give my consent for my personal information.")
+data_var = StringVar(value="Not Accepted")
+data_privacy_check = Checkbutton(data_privacy_frame, text="I give my consent for my personal information.", variable=data_var, onvalue="Accepted", offvalue="Not Accepted")
 data_privacy_check.grid(row=1,column=0)
 
 # Buttons Frame
@@ -112,12 +124,17 @@ buttons_frame = Frame(data_privacy_frame)
 buttons_frame.grid(row=2, column=0)
 
 # Back Button
-back_button = Button(buttons_frame, text="Back", command=back_window)
+back_button = Button(buttons_frame, text="Back", command=back_btn)
 back_button.pack(side=LEFT)
 
 # Next Button
-next_button = Button(buttons_frame, text="Next")
+next_button = Button(buttons_frame, text="Next", command=next_btn)
 next_button.pack(side=RIGHT)
+
+######################### Health Declaration Form ######################### 
+
+panel_3 = Frame(window)
+
 
 first_window()
 
