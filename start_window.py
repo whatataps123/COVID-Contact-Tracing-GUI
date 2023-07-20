@@ -31,7 +31,7 @@ def hide_frames():
 
 window = Tk()
 window.title("COVID Contact Tracing")
-window.geometry()
+window.geometry("")
 
 #frame of panels
 panel_1 = Frame(window)
@@ -135,7 +135,24 @@ next_button.pack(side=RIGHT)
 
 panel_3 = Frame(window)
 
+question_frame = LabelFrame(panel_3, text="Health Declaration Form")
+question_frame.grid(row=0, column=0, sticky="news", pady=5, padx=10)
 
+# 1st Question
+question_1 = Label(question_frame, text="1. Tested positive or presumptively positive with COVID-19 (the new coronavirus \nor SARS-CoV-2) or been identified as a potential carrier of the coronavirus?", wraplength=0, justify=LEFT)
+question_1.grid(row=0, column=0, columnspan=2, sticky="w")
+question_1_yes = Radiobutton(question_frame, text="Yes")
+question_1_yes.grid(row=1, column=0, sticky="w")
+question_1_no = Radiobutton(question_frame, text="No")
+question_1_no.grid(row=1, column=1, sticky="w")
+
+# 2nd Question
+question_2 = Label(question_frame, text="2. Experienced any symptoms commonly associated with COVID-19 (fever; cough; \nfatigue or muscle pain; difficulty breathing; sore throat; lung infections; headache; \nloss of taste; or diarrhea)?", wraplength=0, justify=LEFT)
+question_2.grid(row=2, column=0, columnspan=2, sticky="w")
+question_2_yes = Radiobutton(question_frame, text="Yes")
+question_2_yes.grid(row=3, column=0, sticky="w")
+question_2_no = Radiobutton(question_frame, text="No")
+question_2_no.grid(row=3, column=1, sticky="w")
 first_window()
 
 window.mainloop()
