@@ -109,8 +109,8 @@ email_label_entry.grid(row=5,column=1)
 # Current Date
 date_label = Label(user_frame, text="Date Today")
 date_label.grid(row=4, column=2)
-date_entry = DateEntry(user_frame,)
-date_entry.grid(row=5, column=2)
+date_entry = DateEntry(user_frame, justify=CENTER)
+date_entry.grid(row=5, column=2, sticky="news")
 
 #data privacy grid
 data_privacy_frame = LabelFrame(panel_2, text="Personal Information Protection")
