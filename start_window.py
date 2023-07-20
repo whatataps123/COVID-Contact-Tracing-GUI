@@ -37,10 +37,12 @@ def hide_frames():
     panel_2.pack_forget()
     panel_3.pack_forget()
     panel_4.pack_forget()
+
 window = Tk()
 window.title("COVID Contact Tracing")
 window.geometry("")
 
+######################### START PANEL ######################### 
 #frame of panels
 panel_1 = Frame(window)
 
@@ -158,34 +160,47 @@ question_frame.grid(row=0, column=0, sticky="news", pady=5, padx=10)
 # 1st Question
 question_1 = Label(question_frame, text="1. Tested positive or presumptively positive with COVID-19 (the new coronavirus \nor SARS-CoV-2) or been identified as a potential carrier of the coronavirus?", wraplength=0, justify=LEFT)
 question_1.grid(row=0, column=0, columnspan=2, sticky="w")
-question_1_yes = Radiobutton(question_frame, text="Yes")
+
+question_1_response = IntVar(value=-1)
+
+question_1_yes = Radiobutton(question_frame, text="Yes", variable=question_1_response, value=1)
 question_1_yes.grid(row=1, column=0, sticky="w")
-question_1_no = Radiobutton(question_frame, text="No")
+question_1_no = Radiobutton(question_frame, text="No", variable=question_1_response, value=0)
 question_1_no.grid(row=1, column=1, sticky="w")
 
 # 2nd Question
 question_2 = Label(question_frame, text="2. Experienced any symptoms commonly associated with COVID-19 (fever; cough; \nfatigue or muscle pain; difficulty breathing; sore throat; lung infections; headache; \nloss of taste; or diarrhea)?", wraplength=0, justify=LEFT)
 question_2.grid(row=2, column=0, columnspan=2, sticky="w")
-question_2_yes = Radiobutton(question_frame, text="Yes")
+
+question_2_response = IntVar(value=-1)
+
+question_2_yes = Radiobutton(question_frame, text="Yes", variable=question_2_response, value=1)
 question_2_yes.grid(row=3, column=0, sticky="w")
-question_2_no = Radiobutton(question_frame, text="No")
+question_2_no = Radiobutton(question_frame, text="No",  variable=question_2_response, value=0)
 question_2_no.grid(row=3, column=1, sticky="w")
 
 # 3rd Question
 question_3 = Label(question_frame, text="3. Been in any location/site declared as hazardous with and/or potentially infective \nwith the new coronavirus by a recognised health or regulatory authority?", wraplength=0, justify=LEFT)
 question_3.grid(row=4, column=0, columnspan=2, sticky="w")
-question_3_yes = Radiobutton(question_frame, text="Yes")
+
+question_3_response = IntVar(value=-1)
+
+question_3_yes = Radiobutton(question_frame, text="Yes", variable=question_3_response, value=1)
 question_3_yes.grid(row=5, column=0, sticky="w")
-question_3_no = Radiobutton(question_frame, text="No")
+question_3_no = Radiobutton(question_frame, text="No", variable=question_3_response, value=0)
 question_3_no.grid(row=5, column=1, sticky="w")
 
 # 4th Question
 question_4 = Label(question_frame, text="4.Been in direct contact with or in the immediate vicinity of any person who tested \npositive with the new coronavirus or who was diagnosed as possibly being infected \nby the new coronavirus?", wraplength=0, justify=LEFT)
 question_4.grid(row=6, column=0, columnspan=2, sticky="w")
-question_4_yes = Radiobutton(question_frame, text="Yes")
+
+question_4_response = IntVar(value=-1)
+
+question_4_yes = Radiobutton(question_frame, text="Yes", variable=question_4_response, value=1)
 question_4_yes.grid(row=7, column=0, sticky="w")
-question_4_no = Radiobutton(question_frame, text="No")
+question_4_no = Radiobutton(question_frame, text="No", variable=question_4_response, value=0)
 question_4_no.grid(row=7, column=1, sticky="w")
+
 
 buttons_frame_3 = Frame(panel_3)
 buttons_frame_3.grid(row=2,column=0)
