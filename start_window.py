@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+from tkcalendar import DateEntry
 
 def first_window():
     hide_frames()
@@ -104,6 +105,12 @@ email_label = Label(user_frame, text="Email")
 email_label.grid(row=4,column=1)
 email_label_entry = Entry(user_frame)
 email_label_entry.grid(row=5,column=1)
+
+# Current Date
+date_label = Label(user_frame, text="Date Today")
+date_label.grid(row=4, column=2)
+date_entry = DateEntry(user_frame,)
+date_entry.grid(row=5, column=2)
 
 #data privacy grid
 data_privacy_frame = LabelFrame(panel_2, text="Personal Information Protection")
