@@ -153,6 +153,22 @@ question_2_yes = Radiobutton(question_frame, text="Yes")
 question_2_yes.grid(row=3, column=0, sticky="w")
 question_2_no = Radiobutton(question_frame, text="No")
 question_2_no.grid(row=3, column=1, sticky="w")
+
+# 3rd Question
+question_3 = Label(question_frame, text="3. Been in any location/site declared as hazardous with and/or potentially infective \nwith the new coronavirus by a recognised health or regulatory authority?", wraplength=0, justify=LEFT)
+question_3.grid(row=4, column=0, columnspan=2, sticky="w")
+question_3_yes = Radiobutton(question_frame, text="Yes")
+question_3_yes.grid(row=5, column=0, sticky="w")
+question_3_no = Radiobutton(question_frame, text="No")
+question_3_no.grid(row=5, column=1, sticky="w")
+
+# 4th Question
+question_4 = Label(question_frame, text="4.Been in direct contact with or in the immediate vicinity of any person who tested \npositive with the new coronavirus or who was diagnosed as possibly being infected \nby the new coronavirus?", wraplength=0, justify=LEFT)
+question_4.grid(row=6, column=0, columnspan=2, sticky="w")
+question_4_yes = Radiobutton(question_frame, text="Yes")
+question_4_yes.grid(row=7, column=0, sticky="w")
+question_4_no = Radiobutton(question_frame, text="No")
+question_4_no.grid(row=7, column=1, sticky="w")
 first_window()
 
 window.mainloop()
