@@ -25,11 +25,18 @@ def next_btn():
     else:
         messagebox.showwarning(title="Error",message="Please check the box if you want to proceed.")
 
+def back_btn_2():
+    hide_frames()
+    panel_2.pack()
+
+def submit_btn():
+    hide_frames()
+    panel_4.pack()
 def hide_frames():
     panel_1.pack_forget()
     panel_2.pack_forget()
     panel_3.pack_forget()
-
+    panel_4.pack_forget()
 window = Tk()
 window.title("COVID Contact Tracing")
 window.geometry("")
@@ -91,8 +98,8 @@ age_box.grid(row=1,column=3)
 # Enter Address
 address_label = Label(user_frame,text="Address")
 address_label.grid(row=2,columnspan=4)
-address_entry = Entry(user_frame, width=71)
-address_entry.grid(row=3, columnspan=4)
+address_entry = Entry(user_frame)
+address_entry.grid(row=3, columnspan=4, sticky="news")
 
 # Enter Number
 contact_num_label = Label(user_frame, text="Contact Number")
@@ -111,6 +118,9 @@ date_label = Label(user_frame, text="Date Today")
 date_label.grid(row=4, column=2)
 date_entry = DateEntry(user_frame, justify=CENTER)
 date_entry.grid(row=5, column=2, sticky="news")
+
+for widget in user_frame.winfo_children():
+    widget.grid_configure(padx=3, pady=3)
 
 #data privacy grid
 data_privacy_frame = LabelFrame(panel_2, text="Personal Information Protection")
@@ -132,11 +142,11 @@ buttons_frame.grid(row=2, column=0)
 
 # Back Button
 back_button = Button(buttons_frame, text="Back", command=back_btn)
-back_button.pack(side=LEFT)
+back_button.pack(side=LEFT, pady=2, padx=2)
 
 # Next Button
 next_button = Button(buttons_frame, text="Next", command=next_btn)
-next_button.pack(side=RIGHT)
+next_button.pack(side=RIGHT, pady=2, padx=2)
 
 ######################### Health Declaration Form ######################### 
 
@@ -176,6 +186,21 @@ question_4_yes = Radiobutton(question_frame, text="Yes")
 question_4_yes.grid(row=7, column=0, sticky="w")
 question_4_no = Radiobutton(question_frame, text="No")
 question_4_no.grid(row=7, column=1, sticky="w")
+
+buttons_frame_3 = Frame(panel_3)
+buttons_frame_3.grid(row=2,column=0)
+
+# Back Button
+back_button_3 = Button(buttons_frame_3, text="Back", command=back_btn_2)
+back_button_3.pack(side=LEFT, pady=2,padx=2)
+
+# Submit Button
+submit_button = Button(buttons_frame_3, text="Submit", command=submit_btn)
+submit_button.pack(side=RIGHT, pady=2, padx=2)
+
+######################### Thank you for Submitting Your Response. ######################### 
+panel_4 = Frame(window)
+
 first_window()
 
 window.mainloop()
