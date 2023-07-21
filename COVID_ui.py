@@ -6,6 +6,12 @@ from tkinter import messagebox
 from tkcalendar import DateEntry
 import csv
 
+GREEN1 = "#006400"   # Dark Green
+GREEN2 = "#228B22"   # Forest Green
+GREEN3 = "#32CD32"   # Lime Green
+GREEN4 = "#00FF00"   # Green
+WHITE1 = "#FFFFFF"   # White
+
 class CovidUI(tk.Tk):
 
     def __init__(self):
@@ -13,55 +19,52 @@ class CovidUI(tk.Tk):
         super().__init__()
         self.title("COVID Contact Tracing")
         self.geometry()
-        
-        self.panel_1 = Frame(self)
+        #self.config(bg=)
+        self.panel_1 = Frame(self, bg=GREEN1)
 
         # Welcome Greetings
-        welcome = Label(self.panel_1, text = "Welcome", font=("Times New Roman", 32))
+        welcome = Label(self.panel_1, text = "Welcome", font=("Times New Roman", 32), bg=GREEN1, fg=WHITE1)
         welcome.pack(pady=12, padx=10)
 
         # Program Description
-        sub_head = Label(self.panel_1, text ="COVID Contact Tracing")
+        sub_head = Label(self.panel_1, text ="COVID Contact Tracing", bg=GREEN1, fg=WHITE1)
         sub_head.pack(pady=12,padx=10)
 
         # Start Button
-        start = Button(self.panel_1, text = "Start", command=self.start_btn) 
+        start = Button(self.panel_1, text = "Start", command=self.start_btn, bg=GREEN2, fg=WHITE1) 
         start.pack(pady=12, padx=10)
 
         # Search Button
-        search_button = Button(self.panel_1, text="Search", command=self.start_search_btn)
+        search_button = Button(self.panel_1, text="Search", command=self.start_search_btn, bg=GREEN2, fg=WHITE1)
         search_button.pack(pady=10, padx=10)
         
         ######################## Search Frame ######################### 
 
-        self.search_panel = Frame(self)
-        search_title = Label(self.search_panel, text = "Search Name or Date:")
+        self.search_panel = Frame(self, bg=GREEN1)
+        search_title = Label(self.search_panel, text = "Search Name or Date:", bg=GREEN1, fg=WHITE1)
         search_title.pack(pady=10, padx=10)
 
         # Where the user will enter date or name to search
-        self.search_entry = Entry(self.search_panel)
-        self.search_entry.pack(pady=10, padx=10)
+        self.search_entry = Entry(self.search_panel, bg=WHITE1, fg="black")
+        self.search_entry.pack(anchor=CENTER,pady=10, padx=10)
 
         # Enter Button to Search
-        enter_button = Button(self.search_panel, text= "Enter", command=self.perform_search)
+        enter_button = Button(self.search_panel, text= "Enter", command=self.perform_search,  bg=GREEN2, fg=WHITE1)
         enter_button.pack(pady=10,padx=10)
         # ScrollBar
         scroll_bar = Scrollbar(self.search_panel)
         scroll_bar.pack(side=RIGHT, fill= Y)
         
         # ListBox of Entries
-        self.covid_data = Listbox(self.search_panel, yscrollcommand= scroll_bar.set, height=10, width=50)
+        self.covid_data = Listbox(self.search_panel, yscrollcommand= scroll_bar.set, height=10, width=50,  bg=WHITE1, fg="black")
         self.show_all_data()
-        self.covid_data.pack()
+        self.covid_data.pack(pady=5,padx=5,expand=TRUE, fill=BOTH)
 
         scroll_bar.config(command= self.covid_data.yview)
-        # Back Button Frame
-        search_back_button = Frame(self.search_panel)
-        search_back_button.pack()
         
         #Back Button in Search Panel
-        back_button = Button(search_back_button, text="Back", command=self.back_btn)
-        back_button.pack(side=LEFT, pady=2, padx=2)
+        back_button = Button(self.search_panel, text="Back", command=self.back_btn)
+        back_button.pack(anchor=CENTER, pady=2, padx=2)
 
         ######################## Personal Information ######################### 
 
