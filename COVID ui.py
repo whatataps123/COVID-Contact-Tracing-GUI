@@ -6,6 +6,21 @@ from tkinter import messagebox
 from tkcalendar import DateEntry
 
 class CovidUI(tk.Tk):
+
+    def save_user_response(self):
+        firstname = self.first_name_entry.get()
+        lastname = self.last_name_entry.get()
+        sex = self.sex_box.get()
+        age = self.age_box.get()
+        address = self.address_entry.get()
+        contact = self.contact_num_entry.get()
+        email = self.email_entry.get()
+        currentdate = self.date_entry.get()
+        response1 = self.question_1_response.get()
+        response2 = self.question_2_response.get()
+        response3 = self.question_3_response.get()
+        response4 = self.question_4_response.get()
+
     def __init__(self):
     # Call method of parent class
         super().__init__()
@@ -27,12 +42,12 @@ class CovidUI(tk.Tk):
         start.pack(pady=12, padx=10)
 
         # Search Entry
-        search_title = Label(self.panel_1, text = "Search Name:")
-        search_title.pack(pady=10, padx=10)
-        search_entry = Entry(self.panel_1)
-        search_entry.pack(pady=10, padx=10)
-        search_btn = Button(self.panel_1, text="Search")
-        search_btn.pack(pady=10, padx=10)
+        # search_title = Label(self.panel_1, text = "Search Name:")
+        # search_title.pack(pady=10, padx=10)
+        # search_entry = Entry(self.panel_1)
+        # search_entry.pack(pady=10, padx=10)
+        # search_btn = Button(self.panel_1, text="Search")
+        # search_btn.pack(pady=10, padx=10)
         
         ######################## Personal Information ######################### 
 
@@ -45,50 +60,50 @@ class CovidUI(tk.Tk):
         # Enter First Name
         first_name_label = Label(user_frame, text="First Name")
         first_name_label.grid(row=0, column=0)
-        first_name_entry = Entry(user_frame)
-        first_name_entry.grid(row=1, column=0)
+        self.first_name_entry = Entry(user_frame)
+        self.first_name_entry.grid(row=1, column=0)
 
         # Enter Last Name
         last_name_label = Label(user_frame, text="Last Name")
         last_name_label.grid(row=0,column=1)
-        last_name_entry = Entry(user_frame)
-        last_name_entry.grid(row=1, column=1)
+        self.last_name_entry = Entry(user_frame)
+        self.last_name_entry.grid(row=1, column=1)
 
         # Biological Sex
         sex_label = Label(user_frame, text="Biological Sex")
         sex_label.grid(row=0, column=2)
-        sex_box = ttk.Combobox(user_frame, values=["Male","Female"])
-        sex_box.grid(row=1, column= 2)
+        self.sex_box = ttk.Combobox(user_frame, values=["Male","Female"])
+        self.sex_box.grid(row=1, column= 2)
 
         # Age
         age_label = Label(user_frame, text="Age")
         age_label.grid(row=0, column=3)
-        age_box = ttk.Spinbox(user_frame, from_=1, to_=120, width=3)
-        age_box.grid(row=1,column=3)
+        self.age_box = ttk.Spinbox(user_frame, from_=1, to_=120, width=3)
+        self.age_box.grid(row=1,column=3)
 
         # Enter Address
         address_label = Label(user_frame,text="Address")
         address_label.grid(row=2,columnspan=4)
-        address_entry = Entry(user_frame)
-        address_entry.grid(row=3, columnspan=4, sticky="news")
+        self.address_entry = Entry(user_frame)
+        self.address_entry.grid(row=3, columnspan=4, sticky="news")
 
         # Enter Number
         contact_num_label = Label(user_frame, text="Contact Number")
         contact_num_label.grid(row=4,column=0)
-        contact_num_entry = Entry(user_frame)
-        contact_num_entry.grid(row=5, column=0)
+        self.contact_num_entry = Entry(user_frame)
+        self.contact_num_entry.grid(row=5, column=0)
 
         # Enter Email
         email_label = Label(user_frame, text="Email")
         email_label.grid(row=4,column=1)
-        email_label_entry = Entry(user_frame)
-        email_label_entry.grid(row=5,column=1)
+        self.email_entry = Entry(user_frame)
+        self.email_entry.grid(row=5,column=1)
 
         # Current Date
         date_label = Label(user_frame, text="Date Today")
         date_label.grid(row=4, column=2)
-        date_entry = DateEntry(user_frame, justify=CENTER)
-        date_entry.grid(row=5, column=2, sticky="news")
+        self.date_entry = DateEntry(user_frame, justify=CENTER)
+        self.date_entry.grid(row=5, column=2, sticky="news")
 
         # Padding Configuration for user_frame Widgets
         for widget in user_frame.winfo_children():
@@ -131,44 +146,44 @@ class CovidUI(tk.Tk):
         question_1 = Label(question_frame, text="1. Tested positive or presumptively positive with COVID-19 (the new coronavirus \nor SARS-CoV-2) or been identified as a potential carrier of the coronavirus?", wraplength=0, justify=LEFT)
         question_1.grid(row=0, column=0, columnspan=2, sticky="w")
 
-        question_1_response = IntVar(value=-1)
+        self.question_1_response = IntVar(value=-1)
 
-        question_1_yes = Radiobutton(question_frame, text="Yes", variable=question_1_response, value=1)
+        question_1_yes = Radiobutton(question_frame, text="Yes", variable=self.question_1_response, value=1)
         question_1_yes.grid(row=1, column=0, sticky="w")
-        question_1_no = Radiobutton(question_frame, text="No", variable=question_1_response, value=0)
+        question_1_no = Radiobutton(question_frame, text="No", variable=self.question_1_response, value=0)
         question_1_no.grid(row=1, column=1, sticky="w")
 
         # 2nd Question
         question_2 = Label(question_frame, text="2. Experienced any symptoms commonly associated with COVID-19 (fever; cough; \nfatigue or muscle pain; difficulty breathing; sore throat; lung infections; headache; \nloss of taste; or diarrhea)?", wraplength=0, justify=LEFT)
         question_2.grid(row=2, column=0, columnspan=2, sticky="w")
 
-        question_2_response = IntVar(value=-1)
+        self.question_2_response = IntVar(value=-1)
 
-        question_2_yes = Radiobutton(question_frame, text="Yes", variable=question_2_response, value=1)
+        question_2_yes = Radiobutton(question_frame, text="Yes", variable=self.question_2_response, value=1)
         question_2_yes.grid(row=3, column=0, sticky="w")
-        question_2_no = Radiobutton(question_frame, text="No",  variable=question_2_response, value=0)
+        question_2_no = Radiobutton(question_frame, text="No",  variable=self.question_2_response, value=0)
         question_2_no.grid(row=3, column=1, sticky="w")
 
         # 3rd Question
         question_3 = Label(question_frame, text="3. Been in any location/site declared as hazardous with and/or potentially infective \nwith the new coronavirus by a recognised health or regulatory authority?", wraplength=0, justify=LEFT)
         question_3.grid(row=4, column=0, columnspan=2, sticky="w")
 
-        question_3_response = IntVar(value=-1)
+        self.question_3_response = IntVar(value=-1)
 
-        question_3_yes = Radiobutton(question_frame, text="Yes", variable=question_3_response, value=1)
+        question_3_yes = Radiobutton(question_frame, text="Yes", variable=self.question_3_response, value=1)
         question_3_yes.grid(row=5, column=0, sticky="w")
-        question_3_no = Radiobutton(question_frame, text="No", variable=question_3_response, value=0)
+        question_3_no = Radiobutton(question_frame, text="No", variable=self.question_3_response, value=0)
         question_3_no.grid(row=5, column=1, sticky="w")
 
         # 4th Question
         question_4 = Label(question_frame, text="4.Been in direct contact with or in the immediate vicinity of any person who tested \npositive with the new coronavirus or who was diagnosed as possibly being infected \nby the new coronavirus?", wraplength=0, justify=LEFT)
         question_4.grid(row=6, column=0, columnspan=2, sticky="w")
 
-        question_4_response = IntVar(value=-1)
+        self.question_4_response = IntVar(value=-1)
 
-        question_4_yes = Radiobutton(question_frame, text="Yes", variable=question_4_response, value=1)
+        question_4_yes = Radiobutton(question_frame, text="Yes", variable=self.question_4_response, value=1)
         question_4_yes.grid(row=7, column=0, sticky="w")
-        question_4_no = Radiobutton(question_frame, text="No", variable=question_4_response, value=0)
+        question_4_no = Radiobutton(question_frame, text="No", variable=self.question_4_response, value=0)
         question_4_no.grid(row=7, column=1, sticky="w")
 
 
@@ -185,6 +200,7 @@ class CovidUI(tk.Tk):
 
         ######################### Thank you for Submitting Your Response. ######################### 
         self.panel_4 = Frame(self)
+
 
         self.first_window()
 
