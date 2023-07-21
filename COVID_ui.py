@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 from tkcalendar import DateEntry
+import csv
 
 class CovidUI(tk.Tk):
 
@@ -132,44 +133,44 @@ class CovidUI(tk.Tk):
         question_1 = Label(question_frame, text="1. Tested positive or presumptively positive with COVID-19 (the new coronavirus \nor SARS-CoV-2) or been identified as a potential carrier of the coronavirus?", wraplength=0, justify=LEFT)
         question_1.grid(row=0, column=0, columnspan=2, sticky="w")
 
-        self.question_1_response = IntVar(value=-1)
+        self.question_1_response = tk.StringVar()
 
-        question_1_yes = Radiobutton(question_frame, text="Yes", variable=self.question_1_response, value=1)
+        question_1_yes = ttk.Radiobutton(question_frame, text="Yes", variable=self.question_1_response, value="Yes")
         question_1_yes.grid(row=1, column=0, sticky="w")
-        question_1_no = Radiobutton(question_frame, text="No", variable=self.question_1_response, value=0)
+        question_1_no = ttk.Radiobutton(question_frame, text="No", variable=self.question_1_response, value="No")
         question_1_no.grid(row=1, column=1, sticky="w")
 
         # 2nd Question
         question_2 = Label(question_frame, text="2. Experienced any symptoms commonly associated with COVID-19 (fever; cough; \nfatigue or muscle pain; difficulty breathing; sore throat; lung infections; headache; \nloss of taste; or diarrhea)?", wraplength=0, justify=LEFT)
         question_2.grid(row=2, column=0, columnspan=2, sticky="w")
 
-        self.question_2_response = IntVar(value=-1)
+        self.question_2_response = tk.StringVar()
 
-        question_2_yes = Radiobutton(question_frame, text="Yes", variable=self.question_2_response, value=1)
+        question_2_yes = ttk.Radiobutton(question_frame, text="Yes", variable=self.question_2_response, value="Yes")
         question_2_yes.grid(row=3, column=0, sticky="w")
-        question_2_no = Radiobutton(question_frame, text="No",  variable=self.question_2_response, value=0)
+        question_2_no = ttk.Radiobutton(question_frame, text="No",  variable=self.question_2_response, value="No")
         question_2_no.grid(row=3, column=1, sticky="w")
 
         # 3rd Question
         question_3 = Label(question_frame, text="3. Been in any location/site declared as hazardous with and/or potentially infective \nwith the new coronavirus by a recognised health or regulatory authority?", wraplength=0, justify=LEFT)
         question_3.grid(row=4, column=0, columnspan=2, sticky="w")
 
-        self.question_3_response = IntVar(value=-1)
+        self.question_3_response = tk.StringVar()
 
-        question_3_yes = Radiobutton(question_frame, text="Yes", variable=self.question_3_response, value=1)
+        question_3_yes = ttk.Radiobutton(question_frame, text="Yes", variable=self.question_3_response, value="Yes")
         question_3_yes.grid(row=5, column=0, sticky="w")
-        question_3_no = Radiobutton(question_frame, text="No", variable=self.question_3_response, value=0)
+        question_3_no = ttk.Radiobutton(question_frame, text="No", variable=self.question_3_response, value="No")
         question_3_no.grid(row=5, column=1, sticky="w")
 
         # 4th Question
         question_4 = Label(question_frame, text="4.Been in direct contact with or in the immediate vicinity of any person who tested \npositive with the new coronavirus or who was diagnosed as possibly being infected \nby the new coronavirus?", wraplength=0, justify=LEFT)
         question_4.grid(row=6, column=0, columnspan=2, sticky="w")
 
-        self.question_4_response = IntVar(value=-1)
+        self.question_4_response = tk.StringVar()
 
-        question_4_yes = Radiobutton(question_frame, text="Yes", variable=self.question_4_response, value=1)
+        question_4_yes = ttk.Radiobutton(question_frame, text="Yes", variable=self.question_4_response, value="Yes")
         question_4_yes.grid(row=7, column=0, sticky="w")
-        question_4_no = Radiobutton(question_frame, text="No", variable=self.question_4_response, value=0)
+        question_4_no = ttk.Radiobutton(question_frame, text="No", variable=self.question_4_response, value="No")
         question_4_no.grid(row=7, column=1, sticky="w")
 
 
@@ -223,7 +224,7 @@ class CovidUI(tk.Tk):
         else:
             messagebox.showwarning(title="Error.", message="Please fill all the required fields.")
 
-
+            
     # Change to Frame 2 when Back Button is clicked
     def back_btn_2(self):
         self.hide_frames()
@@ -238,10 +239,24 @@ class CovidUI(tk.Tk):
         response4 = self.question_4_response.get()
 
         if response1 and response2 and response3 and response4:
-            messagebox.showwarning(title="Error", message="Please answer all the questions.")
+            with open("COVID Tracker.csv", mode="a", newline="") as file:
+                writer = csv.writer(file)
+                # Write headers only if the file is empty
+                if file.tell() == 0:
+                    writer.writerow(["First Name", "Last Name", "sex", "age", "address", "contact", "email", "currentdate", "Response 1", "Response 2", "Response 3", "Response 4"])
+                writer.writerow([self.first_name_entry.get(), self.last_name_entry.get(), self.sex_box.get(), self.age_box.get(), self.address_entry.get(), self.contact_num_entry.get(), self.email_entry.get(), self.date_entry.get(), response1, response2, response3, response4])
+            msg_box = tk.messagebox.askquestion(title="Completed", message="Do you want to add another entry?", icon='info')
+            
+            if msg_box == "yes":
+                self.hide_frames()
+                self.panel_1.pack(pady=20, padx=60, fill="both", expand=True)
+            
+            else:
+                self.destroy()
         else:
-            messagebox.showinfo(title="Completed", message="All responses have been submitted.")
+            messagebox.showwarning(title="Error.", message="Please answer all the questions.")
 
+    
     # Implementation to hide the frames
     def hide_frames(self):
         self.panel_1.pack_forget()
