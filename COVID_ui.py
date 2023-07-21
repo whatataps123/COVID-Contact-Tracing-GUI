@@ -28,14 +28,29 @@ class CovidUI(tk.Tk):
         start = Button(self.panel_1, text = "Start", command=self.start_btn) 
         start.pack(pady=12, padx=10)
 
-        # Search Entry
-        # search_title = Label(self.panel_1, text = "Search Name:")
-        # search_title.pack(pady=10, padx=10)
-        # search_entry = Entry(self.panel_1)
-        # search_entry.pack(pady=10, padx=10)
-        # search_btn = Button(self.panel_1, text="Search")
-        # search_btn.pack(pady=10, padx=10)
+        # Search Button
+        search_button = Button(self.panel_1, text="Search", command=self.start_search_btn)
+        search_button.pack(pady=10, padx=10)
         
+        ######################## Search Frame ######################### 
+
+        self.search_panel = Frame(self)
+        search_title = Label(self.search_panel, text = "Search Name:")
+        search_title.pack(pady=10, padx=10)
+        self.search_entry = Entry(self.search_panel)
+        self.search_entry.pack(pady=10, padx=10)
+        enter_button = Button(self.search_panel, text= "Enter", command=self.perform_search)
+        enter_button.pack(pady=10,padx=10)
+
+        self.covid_data = Listbox(self.search_panel, height=10, width=50)
+        self.covid_data.pack()
+
+        search_back_button = Frame(self.search_panel)
+        search_back_button.pack()
+
+        back_button = Button(search_back_button, text="Back", command=self.back_btn)
+        back_button.pack(side=LEFT, pady=2, padx=2)
+
         ######################## Personal Information ######################### 
 
         self.panel_2 = Frame(self)
@@ -187,6 +202,8 @@ class CovidUI(tk.Tk):
 
         self.first_window()
 
+
+################################################################### BUTTON FUNCTIONS ################################################################### 
     # Starting Window
     def first_window(self):
         self.hide_frames()
@@ -202,6 +219,16 @@ class CovidUI(tk.Tk):
     def back_btn(self):
         self.hide_frames()
         self.panel_1.pack(pady=20, padx=60, fill="both", expand=True)
+
+    # Go to Searching Window
+    def start_search_btn(self):
+        self.hide_frames()
+        self.search_panel.pack(pady=20, padx=60, fill="both", expand=True)
+
+    # Change to Frame 2 when Back Button is clicked
+    def back_btn_2(self):
+        self.hide_frames()
+        self.panel_2.pack()
 
     # Change to Frame 3 when Checkbox is checked and Next Button is Clicked
     def next_btn(self):
@@ -274,8 +301,30 @@ class CovidUI(tk.Tk):
         self.question_3_response.set("")
         self.question_4_response.set("")
         
+        # Function to perform the search operation
+    def perform_search(self):
+        search_query = self.search_entry.get()
+        results = []
+
+        with open("COVID Tracker.csv", mode="r", newline="") as file:
+            reader = csv.reader(file)
+            header = next(reader)  # Skip the header row
+            for row in reader:
+                first_name, last_name = row[0], row[1]
+                full_name = f"{first_name} {last_name}"
+                if search_query.lower() in full_name.lower():
+                    results.append(row)
+
+        if not results:
+            messagebox.showinfo("Search Results", "No matching records found.")
+        else:
+            self.covid_data.delete(0, END)
+            for row in results:
+                self.covid_data.insert(END, f"{row[0]} {row[1]}")
+       
     # Implementation to hide the frames
     def hide_frames(self):
         self.panel_1.pack_forget()
         self.panel_2.pack_forget()
         self.panel_3.pack_forget()
+        self.search_panel.pack_forget()
