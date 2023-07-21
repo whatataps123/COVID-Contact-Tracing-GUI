@@ -35,19 +35,27 @@ class CovidUI(tk.Tk):
         ######################## Search Frame ######################### 
 
         self.search_panel = Frame(self)
-        search_title = Label(self.search_panel, text = "Search Name:")
+        search_title = Label(self.search_panel, text = "Search Name or Date:")
         search_title.pack(pady=10, padx=10)
+
+        # Where the user will enter date or name to search
         self.search_entry = Entry(self.search_panel)
         self.search_entry.pack(pady=10, padx=10)
+
+        # Enter Button to Search
         enter_button = Button(self.search_panel, text= "Enter", command=self.perform_search)
         enter_button.pack(pady=10,padx=10)
 
+        # ListBox of Entries
         self.covid_data = Listbox(self.search_panel, height=10, width=50)
         self.covid_data.pack()
+        self.show_all_data()
 
+        # Back Button Frame
         search_back_button = Frame(self.search_panel)
         search_back_button.pack()
-
+        
+        #Back Button in Search Panel
         back_button = Button(search_back_button, text="Back", command=self.back_btn)
         back_button.pack(side=LEFT, pady=2, padx=2)
 
@@ -310,10 +318,10 @@ class CovidUI(tk.Tk):
             reader = csv.reader(file)
             header = next(reader)  # Skip the header row
             for row in reader:
-                first_name, last_name = row[0], row[1]
+                first_name, last_name, date = row[0], row[1], row[7]
                 full_name = f"{first_name} {last_name}"
-                if search_query.lower() in full_name.lower():
-                    results.append(row)
+                if search_query in full_name.lower() or search_query in date.lower():
+                    results.append((full_name, date))
 
         if not results:
             messagebox.showinfo("Search Results", "No matching records found.")
@@ -328,3 +336,20 @@ class CovidUI(tk.Tk):
         self.panel_2.pack_forget()
         self.panel_3.pack_forget()
         self.search_panel.pack_forget()
+
+
+    def read_csv_data(self, filename):
+        data = []
+        with open(filename, mode="r", newline="") as file:
+            reader = csv.reader(file)
+            header = next(reader)  # Skip the header row
+            for row in reader:
+                data.append(row)
+        return data
+    
+       # Function to show all data in the listbox
+    def show_all_data(self):
+        data = self.read_csv_data("COVID Tracker.csv")
+        self.covid_data.delete(0, END)
+        for row in data:
+            self.covid_data.insert(END, f"{row[0]} {row[1]} {row[7]}")
