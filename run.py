@@ -1,4 +1,4 @@
-from start_window import CovidUI
+from COVID_ui import CovidUI
 
 ui = CovidUI()
 

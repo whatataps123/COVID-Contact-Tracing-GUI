@@ -7,20 +7,6 @@ from tkcalendar import DateEntry
 
 class CovidUI(tk.Tk):
 
-    def save_user_response(self):
-        firstname = self.first_name_entry.get()
-        lastname = self.last_name_entry.get()
-        sex = self.sex_box.get()
-        age = self.age_box.get()
-        address = self.address_entry.get()
-        contact = self.contact_num_entry.get()
-        email = self.email_entry.get()
-        currentdate = self.date_entry.get()
-        response1 = self.question_1_response.get()
-        response2 = self.question_2_response.get()
-        response3 = self.question_3_response.get()
-        response4 = self.question_4_response.get()
-
     def __init__(self):
     # Call method of parent class
         super().__init__()
@@ -198,10 +184,6 @@ class CovidUI(tk.Tk):
         submit_button = Button(buttons_frame_3, text="Submit", command=self.submit_btn)
         submit_button.pack(side=RIGHT, pady=2, padx=2)
 
-        ######################### Thank you for Submitting Your Response. ######################### 
-        self.panel_4 = Frame(self)
-
-
         self.first_window()
 
     # Starting Window
@@ -221,12 +203,26 @@ class CovidUI(tk.Tk):
 
     # Change to Frame 3 when Checkbox is checked and Next Button is Clicked
     def next_btn(self):
-        data_check = self.data_var.get()  
-        if data_check == "Accepted":
-            self.hide_frames()
-            self.panel_3.pack()
+        # Saving Personal Info
+        firstname = self.first_name_entry.get()
+        lastname = self.last_name_entry.get()
+        sex = self.sex_box.get()
+        age = self.age_box.get()
+        address = self.address_entry.get()
+        contact = self.contact_num_entry.get()
+        email = self.email_entry.get()
+        currentdate = self.date_entry.get()
+
+        if firstname and lastname and sex and age and address and contact and email and currentdate:
+            data_check = self.data_var.get()  
+            if data_check == "Accepted":
+                self.hide_frames()
+                self.panel_3.pack()
+            else:
+                messagebox.showwarning(title="Error", message="Please check the box if you want to proceed.")
         else:
-            messagebox.showwarning(title="Error",message="Please check the box if you want to proceed.")
+            messagebox.showwarning(title="Error.", message="Please fill all the required fields.")
+
 
     # Change to Frame 2 when Back Button is clicked
     def back_btn_2(self):
@@ -235,12 +231,19 @@ class CovidUI(tk.Tk):
 
     # Submit the Data
     def submit_btn(self):
-        self.hide_frames()
-        self.panel_4.pack()
+        # Saving Responses
+        response1 = self.question_1_response.get()
+        response2 = self.question_2_response.get()
+        response3 = self.question_3_response.get()
+        response4 = self.question_4_response.get()
+
+        if response1 and response2 and response3 and response4:
+            messagebox.showwarning(title="Error", message="Please answer all the questions.")
+        else:
+            messagebox.showinfo(title="Completed", message="All responses have been submitted.")
 
     # Implementation to hide the frames
     def hide_frames(self):
         self.panel_1.pack_forget()
         self.panel_2.pack_forget()
         self.panel_3.pack_forget()
-        self.panel_4.pack_forget()
