@@ -45,12 +45,16 @@ class CovidUI(tk.Tk):
         # Enter Button to Search
         enter_button = Button(self.search_panel, text= "Enter", command=self.perform_search)
         enter_button.pack(pady=10,padx=10)
-
+        # ScrollBar
+        scroll_bar = Scrollbar(self.search_panel)
+        scroll_bar.pack(side=RIGHT, fill= Y)
+        
         # ListBox of Entries
-        self.covid_data = Listbox(self.search_panel, height=10, width=50)
-        self.covid_data.pack()
+        self.covid_data = Listbox(self.search_panel, yscrollcommand= scroll_bar.set, height=10, width=50)
         self.show_all_data()
+        self.covid_data.pack()
 
+        scroll_bar.config(command= self.covid_data.yview)
         # Back Button Frame
         search_back_button = Frame(self.search_panel)
         search_back_button.pack()
