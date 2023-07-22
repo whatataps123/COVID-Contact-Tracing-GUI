@@ -1,16 +1,15 @@
 # pseudocode
 import tkinter as tk
 from tkinter import *
-from tkinter import ttk
-from tkinter import messagebox
-from tkcalendar import DateEntry
-import csv
+import customtkinter
 
 GREEN1 = "#006400"   # Dark Green
 GREEN2 = "#228B22"   # Forest Green
 GREEN3 = "#32CD32"   # Lime Green
 GREEN4 = "#00FF00"   # Green
 WHITE1 = "#FFFFFF"   # White
+customtkinter.set_appearance_mode("System")
+customtkinter.set_default_color_theme("blue")
 
 class CovidUI(tk.Tk):
 
@@ -31,12 +30,12 @@ class CovidUI(tk.Tk):
         sub_head.pack(pady=12,padx=10)
 
         # Start Button
-        start = Button(self.panel_1, text = "Start", command=self.start_btn, bg=GREEN2, fg=WHITE1) 
-        start.pack(pady=12, padx=10)
+        start = customtkinter.CTkButton(self.panel_1, text = "Start", command=self.start_btn) 
+        start.pack(pady=12, padx=10, anchor=customtkinter.CENTER)
 
         # Search Button
-        search_button = Button(self.panel_1, text="Search", command=self.start_search_btn, bg=GREEN2, fg=WHITE1)
-        search_button.pack(pady=10, padx=10)
+        search_button = customtkinter.CTkButton(self.panel_1, text="Search", command=self.start_search_btn)
+        search_button.pack(pady=10, padx=10, anchor=customtkinter.CENTER)
 
         self.first_window()
 
