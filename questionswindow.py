@@ -110,8 +110,8 @@ class QuestionsWindow(Toplevel):
             msg_box = messagebox.askquestion(title="Completed", message="Do you want to add another entry?", icon='info')
             if msg_box == "yes":
                 self.destroy()  # Close the current QuestionsWindow
-                from personalinfo import PersonalWindow
-                PersonalWindow()  # Reopen PersonalWindow to add another entry
+                from homewindow import CovidUI
+                CovidUI()  # Reopen PersonalWindow to add another entry
             else:
                 self.destroy()  # Close the application
         else:
