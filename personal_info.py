@@ -85,7 +85,7 @@ class PersonalWindow(Toplevel):
         data_privacy_label = customtkinter.CTkLabel(data_privacy_frame, text="Data Privacy Act")
         data_privacy_label.grid(row=0,column=0, pady=2)
         data_privacy_paragraph = customtkinter.CTkLabel(data_privacy_frame, 
-            text="I, hereby give my consent to COVID-19 Contanct Tracing to collect, process, and use my personal information for the purposes stated in this form. I understand that my personal data will be treated with confidentiality and will only be\ndisclosed to third parties as necessary for the specified purposes. I acknowledge that I have the right to withdraw my consent at any time. By checking the box below, I confirm that I have read and understood this Data Privacy Consent Form, including the 'Data Privacy Act of 2012' of the Republic of the Philippines, its Implementing Rules and Regulations (IRR), as well as all other guidelines and issuances by the National Privacy Commission (NPC).", wraplength=470 ,justify=CENTER)
+            text="I, hereby give my consent to COVID-19 Contact Tracing to collect, process, and use my personal information for the purposes stated in this form. I understand that my personal data will be treated with confidentiality and will only be\ndisclosed to third parties as necessary for the specified purposes. I acknowledge that I have the right to withdraw my consent at any time. By checking the box below, I confirm that I have read and understood this Data Privacy Consent Form, including the 'Data Privacy Act of 2012' of the Republic of the Philippines, its Implementing Rules and Regulations (IRR), as well as all other guidelines and issuances by the National Privacy Commission (NPC).", wraplength=470 ,justify=CENTER)
         data_privacy_paragraph.grid(row=1, padx=2)
 
         #data privacy check button
@@ -105,10 +105,12 @@ class PersonalWindow(Toplevel):
         next_button = customtkinter.CTkButton(buttons_frame, text="Next", command=self.next_event)
         next_button.pack(side=RIGHT, pady=2, padx=2)
 
+    # Event for Back button, goes back to Home Window
     def back_to_main_event(self):
         self.withdraw()
         self.master.deiconify()  # Show the main window again
 
+    # Event for Next button, goes to Questionnaire Window
     def next_event(self):
         # Saving Personal Info
         firstname = self.first_name_entry.get()

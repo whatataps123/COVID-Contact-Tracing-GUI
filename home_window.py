@@ -25,24 +25,27 @@ class CovidUI(customtkinter.CTk):
         sub_head.pack(pady=12,padx=10)
 
         # Start Button
-        start = customtkinter.CTkButton(self.panel_1, text = "Start", command=self.start_btn) 
+        start = customtkinter.CTkButton(self.panel_1, text = "Start", command=self.start_event) 
         start.pack( padx=20, pady=10, anchor=customtkinter.CENTER)
 
         # Search Button
-        search_button = customtkinter.CTkButton(self.panel_1, text="Search", command=self.start_search_btn)
+        search_button = customtkinter.CTkButton(self.panel_1, text="Search", command=self.start_search_event)
         search_button.pack(padx=20, pady=10, anchor=customtkinter.CENTER)
 
         self.first_window()
 
+    # To show first window
     def first_window(self):
         self.panel_1.pack(pady=20, padx=60, fill="both", expand=True)
 
-    def start_btn(self):
+    # Event for Start button, goes to Personal Window
+    def start_event(self):
         self.withdraw()
         from personal_info import PersonalWindow
         PersonalWindow()
 
-    def start_search_btn(self):
+    # Event for Search button, goes to Search Window
+    def start_search_event(self):
         self.withdraw()
         from search_window import SearchWindow
         SearchWindow()

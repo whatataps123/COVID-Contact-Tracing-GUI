@@ -27,6 +27,7 @@ class SearchWindow(Toplevel):
         # Enter Button to Search
         enter_button = customtkinter.CTkButton(self.search_panel, text= "Enter", fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"),command=self.perform_search)
         enter_button.pack(pady=10,padx=10)
+
         # ScrollBar
         scroll_bar = Scrollbar(self.search_panel)
         scroll_bar.pack(side=RIGHT, fill= Y)
@@ -39,13 +40,15 @@ class SearchWindow(Toplevel):
         scroll_bar.config(command= self.covid_data.yview)
         
         #Back Button in Search Panel
-        back_button = customtkinter.CTkButton(self.search_panel, text="Back", command=self.back_to_main)
+        back_button = customtkinter.CTkButton(self.search_panel, text="Back", command=self.back_to_main_event)
         back_button.pack(anchor=CENTER, pady=2, padx=2)
 
-    def back_to_main(self):
+    # Event for Back button, goes back to Home Window
+    def back_to_main_event(self):
         self.withdraw()
         self.master.deiconify()
 
+    # Event for Enter button, will search for data in the csv file
     def perform_search(self):
         search_query = self.search_entry.get()
         results = []
@@ -65,7 +68,8 @@ class SearchWindow(Toplevel):
             self.covid_data.delete(0, END)
             for row in results:
                 self.covid_data.insert(END, f"{row[0]} {row[1]}")
-                
+    
+    # Will read the csv file            
     def read_csv_data(self, filename):
         data = []
         with open(filename, mode="r", newline="") as file:
@@ -75,6 +79,7 @@ class SearchWindow(Toplevel):
                 data.append(row)
         return data
 
+    # Will show the read csv file into the ListBox if called
     def show_all_data(self):
         data = self.read_csv_data("COVID Tracker.csv")
         self.covid_data.delete(0, END)
