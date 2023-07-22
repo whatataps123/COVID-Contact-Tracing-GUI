@@ -1,6 +1,6 @@
 # pseudocode
-import tkinter as tk
-from tkinter import *
+import tkinter
+import tkinter.messagebox
 import customtkinter
 
 GREEN1 = "#006400"   # Dark Green
@@ -11,31 +11,31 @@ WHITE1 = "#FFFFFF"   # White
 customtkinter.set_appearance_mode("System")
 customtkinter.set_default_color_theme("blue")
 
-class CovidUI(tk.Tk):
+class CovidUI(customtkinter.CTk):
 
     def __init__(self):
     # Call method of parent class
         super().__init__()
         self.title("COVID Contact Tracing")
         self.geometry()
-        self.config(bg=GREEN3)
-        self.panel_1 = Frame(self, bg=GREEN1)
+        #self.config(bg=GREEN3)
+        self.panel_1 = customtkinter.CTkFrame(self)
 
         # Welcome Greetings
-        welcome = Label(self.panel_1, text = "Welcome", font=("Times New Roman", 32), bg=GREEN1, fg=WHITE1)
+        welcome = customtkinter.CTkLabel(self.panel_1, text = "Welcome", font=customtkinter.CTkFont(size=20, weight="bold"))
         welcome.pack(pady=12, padx=10)
 
         # Program Description
-        sub_head = Label(self.panel_1, text ="COVID Contact Tracing", bg=GREEN1, fg=WHITE1)
+        sub_head = customtkinter.CTkLabel(self.panel_1, text ="COVID Contact Tracing")
         sub_head.pack(pady=12,padx=10)
 
         # Start Button
         start = customtkinter.CTkButton(self.panel_1, text = "Start", command=self.start_btn) 
-        start.pack(pady=12, padx=10, anchor=customtkinter.CENTER)
+        start.pack( padx=20, pady=10, anchor=customtkinter.CENTER)
 
         # Search Button
         search_button = customtkinter.CTkButton(self.panel_1, text="Search", command=self.start_search_btn)
-        search_button.pack(pady=10, padx=10, anchor=customtkinter.CENTER)
+        search_button.pack(padx=20, pady=10, anchor=customtkinter.CENTER)
 
         self.first_window()
 

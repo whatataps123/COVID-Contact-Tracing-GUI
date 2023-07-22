@@ -1,5 +1,5 @@
 from homewindow import CovidUI
 
-ui = CovidUI()
-
-ui.mainloop()
+if __name__ == "__main__":
+    ui = CovidUI()
+    ui.mainloop()
