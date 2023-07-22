@@ -50,7 +50,8 @@ class PersonalWindow(Toplevel):
         # Age
         age_label = customtkinter.CTkLabel(user_frame, text="Age")
         age_label.grid(row=0, column=3)
-        self.age_box = ttk.Spinbox(user_frame, from_=1, to_=120, width=3)
+        font_roboto = ("Roboto", 13)
+        self.age_box = ttk.Spinbox(user_frame, from_=1, to_=120, width=3, font=font_roboto)
         self.age_box.grid(row=1,column=3)
 
         # Enter Address
@@ -74,7 +75,7 @@ class PersonalWindow(Toplevel):
         # Current Date
         date_label = customtkinter.CTkLabel(user_frame, text="Date Today")
         date_label.grid(row=4, column=2)
-        font_roboto = ("Roboto", 12)
+        font_roboto = ("Roboto", 13)
         self.date_entry = DateEntry(user_frame, justify=CENTER, font=font_roboto)
         self.date_entry.grid(row=5, column=2, sticky="news")
 
@@ -97,22 +98,22 @@ class PersonalWindow(Toplevel):
         data_privacy_check.grid(row=1,column=0)
 
         # Buttons Frame
-        buttons_frame = Frame(data_privacy_frame)
+        buttons_frame = customtkinter.CTkFrame(data_privacy_frame)
         buttons_frame.grid(row=2, column=0)
 
         # Back Button
-        back_button = Button(buttons_frame, text="Back", command=self.back_to_main)
+        back_button = customtkinter.CTkButton(buttons_frame, text="Back", command=self.back_to_main_event)
         back_button.pack(side=LEFT, pady=2, padx=2)
 
         # Next Button
-        next_button = Button(buttons_frame, text="Next", command=self.next_btn)
+        next_button = customtkinter.CTkButton(buttons_frame, text="Next", command=self.next_event)
         next_button.pack(side=RIGHT, pady=2, padx=2)
 
-    def back_to_main(self):
+    def back_to_main_event(self):
         self.withdraw()
         self.master.deiconify()  # Show the main window again
 
-    def next_btn(self):
+    def next_event(self):
         # Saving Personal Info
         firstname = self.first_name_entry.get()
         lastname = self.last_name_entry.get()
@@ -122,7 +123,6 @@ class PersonalWindow(Toplevel):
         contact = self.contact_num_entry.get()
         email = self.email_entry.get()
         currentdate = self.date_entry.get()
-
         if firstname and lastname and sex and age and address and contact and email and currentdate:
             data_check = self.data_var.get()  
             if data_check == "Accepted":
@@ -130,7 +130,7 @@ class PersonalWindow(Toplevel):
                 from questionswindow import QuestionsWindow
                 QuestionsWindow(firstname, lastname, sex, age, address, contact, email, currentdate)
             else:
-                messagebox.showwarning(title="Error", message="Please check the box if you want to proceed.")
+                messagebox.showwarning(title="Error", message="Please check the box if you want to proceed")
         else:
             messagebox.showwarning(title="Error.", message="Please fill all the required fields.")
 
