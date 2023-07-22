@@ -125,7 +125,13 @@ class PersonalWindow(Toplevel):
         contact = self.contact_num_entry.get()
         email = self.email_entry.get()
         currentdate = self.date_entry.get()
+
         if firstname and lastname and sex and age and address and contact and email and currentdate:
+
+            if not age.isdigit():
+                messagebox.showwarning(title="Error", message="Age should only contain digits")
+                return
+            
             data_check = self.data_var.get()  
             if data_check == "Accepted":
                 self.withdraw()
