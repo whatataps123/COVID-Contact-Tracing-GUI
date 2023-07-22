@@ -5,6 +5,7 @@ from tkinter import messagebox
 from tkcalendar import DateEntry
 from tkinter import Toplevel
 import csv
+import customtkinter
 
 class QuestionsWindow(Toplevel):
     def __init__(self, firstname, lastname, sex, age, address, contact, email, currentdate):
@@ -23,54 +24,54 @@ class QuestionsWindow(Toplevel):
         super().__init__()
         self.title("COVID Contact Tracing")
         self.geometry()
-        self.panel_3 = Frame(self)
+        self.panel_3 = customtkinter.CTkFrame(self)
         self.panel_3.pack()
 
-        question_frame = LabelFrame(self.panel_3, text="Health Declaration Form")
+        question_frame = LabelFrame(self.panel_3, text="Health Declaration Form",  font=customtkinter.CTkFont)
         question_frame.grid(row=0, column=0, sticky="news", pady=5, padx=10)
 
         # 1st Question
-        question_1 = Label(question_frame, text="1. Tested positive or presumptively positive with COVID-19 (the new coronavirus \nor SARS-CoV-2) or been identified as a potential carrier of the coronavirus?", wraplength=0, justify=LEFT)
+        question_1 = customtkinter.CTkLabel(question_frame, text="1. Tested positive or presumptively positive with COVID-19 (the new coronavirus \nor SARS-CoV-2) or been identified as a potential carrier of the coronavirus?", wraplength=0, justify=LEFT)
         question_1.grid(row=0, column=0, columnspan=2, sticky="w")
 
         self.question_1_response = tk.StringVar()
 
-        question_1_yes = ttk.Radiobutton(question_frame, text="Yes", variable=self.question_1_response, value="Yes")
+        question_1_yes = customtkinter.CTkRadioButton(question_frame, text="Yes", variable=self.question_1_response, value="Yes")
         question_1_yes.grid(row=1, column=0, sticky="w")
-        question_1_no = ttk.Radiobutton(question_frame, text="No", variable=self.question_1_response, value="No")
+        question_1_no = customtkinter.CTkRadioButton(question_frame, text="No", variable=self.question_1_response, value="No")
         question_1_no.grid(row=1, column=1, sticky="w")
 
         # 2nd Question
-        question_2 = Label(question_frame, text="2. Experienced any symptoms commonly associated with COVID-19 (fever; cough; \nfatigue or muscle pain; difficulty breathing; sore throat; lung infections; headache; \nloss of taste; or diarrhea)?", wraplength=0, justify=LEFT)
+        question_2 = customtkinter.CTkLabel(question_frame, text="2. Experienced any symptoms commonly associated with COVID-19 (fever; cough; \nfatigue or muscle pain; difficulty breathing; sore throat; lung infections; headache; \nloss of taste; or diarrhea)?", wraplength=0, justify=LEFT)
         question_2.grid(row=2, column=0, columnspan=2, sticky="w")
 
         self.question_2_response = tk.StringVar()
 
-        question_2_yes = ttk.Radiobutton(question_frame, text="Yes", variable=self.question_2_response, value="Yes")
+        question_2_yes = customtkinter.CTkRadioButton(question_frame, text="Yes", variable=self.question_2_response, value="Yes")
         question_2_yes.grid(row=3, column=0, sticky="w")
-        question_2_no = ttk.Radiobutton(question_frame, text="No",  variable=self.question_2_response, value="No")
+        question_2_no = customtkinter.CTkRadioButton(question_frame, text="No",  variable=self.question_2_response, value="No")
         question_2_no.grid(row=3, column=1, sticky="w")
 
         # 3rd Question
-        question_3 = Label(question_frame, text="3. Been in any location/site declared as hazardous with and/or potentially infective \nwith the new coronavirus by a recognised health or regulatory authority?", wraplength=0, justify=LEFT)
+        question_3 = customtkinter.CTkLabel(question_frame, text="3. Been in any location/site declared as hazardous with and/or potentially infective \nwith the new coronavirus by a recognised health or regulatory authority?", wraplength=0, justify=LEFT)
         question_3.grid(row=4, column=0, columnspan=2, sticky="w")
 
         self.question_3_response = tk.StringVar()
 
-        question_3_yes = ttk.Radiobutton(question_frame, text="Yes", variable=self.question_3_response, value="Yes")
+        question_3_yes = customtkinter.CTkRadioButton(question_frame, text="Yes", variable=self.question_3_response, value="Yes")
         question_3_yes.grid(row=5, column=0, sticky="w")
-        question_3_no = ttk.Radiobutton(question_frame, text="No", variable=self.question_3_response, value="No")
+        question_3_no = customtkinter.CTkRadioButton(question_frame, text="No", variable=self.question_3_response, value="No")
         question_3_no.grid(row=5, column=1, sticky="w")
 
         # 4th Question
-        question_4 = Label(question_frame, text="4.Been in direct contact with or in the immediate vicinity of any person who tested \npositive with the new coronavirus or who was diagnosed as possibly being infected \nby the new coronavirus?", wraplength=0, justify=LEFT)
+        question_4 = customtkinter.CTkLabel(question_frame, text="4.Been in direct contact with or in the immediate vicinity of any person who tested \npositive with the new coronavirus or who was diagnosed as possibly being infected \nby the new coronavirus?", wraplength=0, justify=LEFT)
         question_4.grid(row=6, column=0, columnspan=2, sticky="w")
 
         self.question_4_response = tk.StringVar()
 
-        question_4_yes = ttk.Radiobutton(question_frame, text="Yes", variable=self.question_4_response, value="Yes")
+        question_4_yes = customtkinter.CTkRadioButton(question_frame, text="Yes", variable=self.question_4_response, value="Yes")
         question_4_yes.grid(row=7, column=0, sticky="w")
-        question_4_no = ttk.Radiobutton(question_frame, text="No", variable=self.question_4_response, value="No")
+        question_4_no = customtkinter.CTkRadioButton(question_frame, text="No", variable=self.question_4_response, value="No")
         question_4_no.grid(row=7, column=1, sticky="w")
 
 
@@ -78,16 +79,16 @@ class QuestionsWindow(Toplevel):
         buttons_frame_3.grid(row=2,column=0)
 
         # Back Button
-        back_button_3 = Button(buttons_frame_3, text="Back", command=self.back_to_previous)
+        back_button_3 = customtkinter.CTkButton(buttons_frame_3, text="Back", command=self.back_to_previous)
         back_button_3.pack(side=LEFT, pady=2,padx=2)
 
         # Submit Button
-        submit_button = Button(buttons_frame_3, text="Submit", command=self.submit_btn)
+        submit_button = customtkinter.CTkButton(buttons_frame_3, text="Submit", command=self.submit_btn)
         submit_button.pack(side=RIGHT, pady=2, padx=2)
     
     def back_to_previous(self):
         self.withdraw()
-        from personalinfo import PersonalWindow
+        from personal_info import PersonalWindow
         PersonalWindow()
 
     def submit_btn(self):
@@ -110,9 +111,15 @@ class QuestionsWindow(Toplevel):
             msg_box = messagebox.askquestion(title="Completed", message="Do you want to add another entry?", icon='info')
             if msg_box == "yes":
                 self.destroy()  # Close the current QuestionsWindow
-                from homewindow import CovidUI
+                from home_window import CovidUI
                 CovidUI()  # Reopen PersonalWindow to add another entry
             else:
-                self.destroy()  # Close the application
+                msg_box_search = messagebox.askquestion(title="Completed", message="Do you want to search an entry?", icon='info')
+                if msg_box_search == "yes":
+                    self.destroy()  # Close the current QuestionWindow
+                    from search_window import SearchWindow # Open search window to search an entry
+                    SearchWindow()
+                else:
+                    self.destroy()
         else:
             messagebox.showwarning(title="Error.", message="Please answer all the questions.")
