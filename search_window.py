@@ -6,12 +6,6 @@ from tkinter import messagebox
 import csv
 from tkinter import Toplevel
 
-GREEN1 = "#006400"   # Dark Green
-GREEN2 = "#228B22"   # Forest Green
-GREEN3 = "#32CD32"   # Lime Green
-GREEN4 = "#00FF00"   # Green
-WHITE1 = "#FFFFFF"   # White
-
 class SearchWindow(Toplevel):
     def __init__(self):
     # Call method of parent class

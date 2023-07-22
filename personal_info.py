@@ -8,12 +8,6 @@ from tkinter import Toplevel
 from tkinter.font import Font
 import customtkinter
 
-GREEN1 = "#006400"   # Dark Green
-GREEN2 = "#228B22"   # Forest Green
-GREEN3 = "#32CD32"   # Lime Green
-GREEN4 = "#00FF00"   # Green
-WHITE1 = "#FFFFFF"   # White
-
 class PersonalWindow(Toplevel):
     def __init__(self):
     # Call method of parent class
@@ -143,7 +137,7 @@ class PersonalWindow(Toplevel):
             data_check = self.data_var.get()  
             if data_check == "Accepted":
                 self.withdraw()
-                from questionswindow import QuestionsWindow
+                from questions_window import QuestionsWindow
                 QuestionsWindow(firstname, lastname, sex, age, address, contact, email, currentdate)
             else:
                 messagebox.showwarning(title="Error", message="Please check the box if you want to proceed")

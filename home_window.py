@@ -3,11 +3,6 @@ import tkinter
 import tkinter.messagebox
 import customtkinter
 
-GREEN1 = "#006400"   # Dark Green
-GREEN2 = "#228B22"   # Forest Green
-GREEN3 = "#32CD32"   # Lime Green
-GREEN4 = "#00FF00"   # Green
-WHITE1 = "#FFFFFF"   # White
 customtkinter.set_appearance_mode("System")
 customtkinter.set_default_color_theme("blue")
 
@@ -44,10 +39,10 @@ class CovidUI(customtkinter.CTk):
 
     def start_btn(self):
         self.withdraw()
-        from personalinfo import PersonalWindow
+        from personal_info import PersonalWindow
         PersonalWindow()
 
     def start_search_btn(self):
         self.withdraw()
-        from searchwindow import SearchWindow
+        from search_window import SearchWindow
         SearchWindow()
