@@ -126,12 +126,20 @@ class PersonalWindow(Toplevel):
         email = self.email_entry.get()
         currentdate = self.date_entry.get()
 
+        # Handling error for user to input data on each field
         if firstname and lastname and sex and age and address and contact and email and currentdate:
 
+            # Handling error for user to input only digits in age    
             if not age.isdigit():
                 messagebox.showwarning(title="Error", message="Age should only contain digits")
                 return
             
+            # Handling error for user to input only digits in contact number
+            if not contact.isdigit():
+                messagebox.showwarning(title="Error", message="Contact should only contain digits")   
+                return
+            
+            # Handling error for user to check the box if want to proceed
             data_check = self.data_var.get()  
             if data_check == "Accepted":
                 self.withdraw()
