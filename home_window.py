@@ -12,7 +12,6 @@ class CovidUI(customtkinter.CTk):
         super().__init__()
         self.title("COVID Contact Tracing")
         self.geometry()
-        #self.config(bg=GREEN3)
         self.panel_1 = customtkinter.CTkFrame(self)
 
         # Welcome Greetings

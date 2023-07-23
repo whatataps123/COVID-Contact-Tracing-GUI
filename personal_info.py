@@ -15,8 +15,6 @@ class PersonalWindow(Toplevel):
         self.title("COVID Contact Tracing")
         self.geometry()
 
-        #self.config(bg=)
-
         self.panel_2 = customtkinter.CTkFrame(self)
         self.panel_2.pack()
         # Created frames for Personal Information Inputs
@@ -145,5 +143,3 @@ class PersonalWindow(Toplevel):
                 messagebox.showwarning(title="Error", message="Please check the box if you want to proceed")
         else:
             messagebox.showwarning(title="Error.", message="Please fill all the required fields.")
-
-            
