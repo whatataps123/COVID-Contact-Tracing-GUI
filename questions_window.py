@@ -1,8 +1,6 @@
 import tkinter as tk
 from tkinter import *
-from tkinter import ttk
 from tkinter import messagebox
-from tkcalendar import DateEntry
 from tkinter import Toplevel
 import csv
 import customtkinter

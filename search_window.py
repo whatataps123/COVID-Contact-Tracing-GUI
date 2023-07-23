@@ -1,7 +1,5 @@
 # pseudocode
-import tkinter as tk
 from tkinter import *
-from tkinter import ttk
 from tkinter import messagebox
 import csv
 from tkinter import Toplevel
@@ -50,7 +48,7 @@ class SearchWindow(Toplevel):
 
     # Event for Enter button, will search for data in the csv file
     def perform_search(self):
-        search_query = self.search_entry.get()
+        search_query = self.search_entry.get().lower()
         results = []
 
         with open("COVID Tracker.csv", mode="r", newline="") as file:
