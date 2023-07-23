@@ -57,9 +57,9 @@ The COVID Contact Tracing application provides the following features:
 
 Below is an overview of the main Python files included in the COVID Contact Tracing application:
 
-### main.py
+### COVID_ui.py
 
-This script serves as the entry point to the application. It imports the necessary modules and initializes the main window of the application by creating an instance of the `CovidUI` class defined in `home_window.py`.
+This script serves as the entry point to the application. It was the backbone of the entire application. It imports the necessary modules and initializes the main window of the application by creating an instance of the `CovidUI` class defined in `home_window.py`.
 
 ### home_window.py
 
@@ -82,4 +82,5 @@ Please note that the code provided is a simplified version of the COVID Contact 
 ## Demo
 
 You can access my demo through this link:
+https://drive.google.com/file/d/1qcALvVq4-OWG4EQvf3ukod9ofW-D4bbB/view?usp=sharing
 
